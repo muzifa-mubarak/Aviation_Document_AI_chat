@@ -1,0 +1,16 @@
+numpy
+pandas
+faiss-cpu
+langchain 
+langchain-google-genai
+google-generativeai
+langchain-community
+pypdf
+torch
+google-generativeai
+fastapi
+uvicorn 
+python-multipart
+gradio 
+langchain_huggingface
+sentence-transformers
