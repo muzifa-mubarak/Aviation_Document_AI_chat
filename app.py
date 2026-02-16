@@ -61,6 +61,8 @@ Context:
 
     return {"answer": response.content}
 
+print("App is running!")
+
 
 
 
