@@ -1,4 +1,4 @@
-## ✈️ Aviation RAG Chatbot
+# ✈️ Aviation RAG Chatbot
 
 A Deep-Domain Aviation Knowledge Assistant using RAG
 
@@ -6,15 +6,15 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot built spe
 
 The system provides:
 
-🧠 Deep aviation knowledge reasoning
+--🧠 Deep aviation knowledge reasoning
 
-📄 PDF ingestion pipeline
+--📄 PDF ingestion pipeline
 
-🔎 Semantic retrieval with FAISS
+--🔎 Semantic retrieval with FAISS
 
-💬 Interactive Gradio chatbot UI
+--💬 Interactive Gradio chatbot UI
 
-🚀 Production-ready FastAPI endpoints
+--🚀 Production-ready FastAPI endpoints
 
 ## 🏗️ Project Architecture
 
@@ -22,31 +22,31 @@ The project consists of two main components:
 
 1️⃣ ragchat.py – Gradio Chatbot Interface
 
-Upload aviation PDFs
+--Upload aviation PDFs
 
-Create FAISS vector index
+--Create FAISS vector index
 
-Ask domain-specific aviation questions
+--Ask domain-specific aviation questions
 
-Get context-grounded answers
+--Get context-grounded answers
 
-Chat-style interface for interactive exploration
+--Chat-style interface for interactive exploration
 
 2️⃣ app.py – FastAPI Backend
 
-Provides REST endpoints:
+--Provides REST endpoints:
 
-POST /ingest → Upload and process PDF
+--POST /ingest → Upload and process PDF
 
-POST /ask → Ask question against ingested documents
+--POST /ask → Ask question against ingested documents
 
 Structured API response includes:
 
-✅ Answer
+--✅ Answer
 
-✅ Citations (Document name + page / chunk ID)
+--✅ Citations (Document name + page / chunk ID)
 
-✅ Retrieved chunks (when debug flag enabled)
+--✅ Retrieved chunks (when debug flag enabled)
 
 ## 📁 Project Structure
 ```
@@ -71,13 +71,57 @@ GOOGLE_API_KEY=your_google_api_key
 ```
 python ragchat.py
 ```
-
-## 🚀 Run FastAPI Server
 Processing the pdf
-![Chatbot Demo](assets/pdf processing image.jpeg)
+![Chatbot Demo](assets/pdf_processing_image.jpeg)
 
 Chat Responses 
 ![Chatbot Demo](assets/chat_image.jpeg)
 ![Chatbot Demo](assets/chat_image2.jpeg)
+
+## 🚀 Run FastAPI Server
+
+```
+uvicorn app:app --reload
+```
+Open:
+```
+http://127.0.0.1:8000/docs
+```
+Swagger UI allows:
+
+Uploading PDF via /ingest
+
+Asking aviation questions via /ask
+
+## 🧪 Example API Request
+POST /ask
+
+```
+{
+  "question": "Explain the principles of lift in fixed-wing aircraft",
+  "debug": true
+}
+```
+Response Format
+
+```
+{
+  "answer": "...",
+  "citations": [
+    {
+      "document": "aerodynamics.pdf",
+      "page": 42,
+      "chunk_id": 7
+    }
+  ],
+  "retrieved_chunks": [
+    {
+      "chunk_id": 7,
+      "page": 42,
+      "snippet": "Lift is generated due to pressure differential..."
+    }
+  ]
+}
+```
 
 
